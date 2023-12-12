@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to create auto-resize textarea using JavaScript/jQuery ?</title>
+    <style>
+      .textarea {
+        font-family: inherit;
+        font-size: inherit;
+        padding: 1px 6px;
+      }
+
+      .textarea {
+        display: inline;
+        width: 100%;
+        overflow: hidden;
+        min-height: 40px;
+        line-height: 20px;
+      }
+
+      .textarea:focus-visible {
+        outline: none;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Heebo', sans-serif;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p><strong>Solution with span:</strong> <span class="textarea" role="textbox" contenteditable></span></p>
+  </body>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var textarea = document.querySelector('.textarea')
+
+      textarea.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          event.preventDefault()
+          console.log('Input value:', textarea.innerText)
+          textarea.innerText = '' // Clear the input value
+        }
+      })
+
+      textarea.addEventListener('input', function () {
+        var textContent = textarea.innerText.replace(/\n/g, '') // Replace all occurrences of '\n'
+        if (textarea.textContent !== textarea.innerText) {
+          console.log('Input value:', textarea.textContent)
+          textarea.innerText = textarea.textContent // Clear the input value
+        }
+      })
+    })
+  </script>
+</html>

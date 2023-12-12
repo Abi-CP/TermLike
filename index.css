@@ -1,0 +1,101 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Lucida Console', monaco, 'Courier New', Courier, monospace;
+  letter-spacing: 0.4px;
+  line-height: 1.4;
+  font-size: 0.8rem;
+  color: #7afa50;
+}
+
+body {
+  --bgc: #000;
+  --fgc: #7afa50;
+  --bdrc: #fff;
+  --cm: 20px;
+  --cp: 20px;
+  /* cursor: crosshair; */
+}
+
+div.termLike.root {
+  overflow: hidden;
+  background-color: var(--bgc);
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  position: fixed;
+  inset: 0px;
+  /* padding: 10px 20px; */
+}
+
+div.termLike.containerMain {
+  overflow-y: scroll;
+  background-color: var(--bgc);
+  border: 0.05rem solid var(--bdrc);
+  border-radius: 0.25rem;
+  position: absolute;
+  padding: var(--cp);
+  margin: var(--cm);
+  inset: 0px;
+}
+
+input {
+  height: auto;
+  background-color: var(--bgc);
+  color: var(--fgc);
+  font-family: 'Lucida Console', monaco, 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.inputWrapper {
+  width: fit-content;
+}
+
+.textarea {
+  font-family: inherit;
+  font-size: inherit;
+  /* padding-right: 10px; */
+}
+
+.textarea {
+  display: inline;
+  /* min-inline-size: 100px; */
+  min-width: 10ch;
+  /* overflow: */
+  /* min-height: 40px; */
+  /* line-height: 20px; */
+  text-transform: none;
+  word-wrap: break-word;
+  resize: both;
+  padding-right: 2px;
+  
+}
+
+.textarea:focus-visible {
+  /* border-bottom: 1px solid #7afa50;
+  border-width: 1px 1rem; */
+  outline: none;
+  caret-shape: underscore;
+  user-select: none;
+}
+
+.textarea:focus {
+  caret-shape: underscore;
+}
+
+.textarea div{
+  display: inline;
+}
