@@ -9,25 +9,26 @@
   <body>
     <div class="termLike root">
       <div class="termLike containerMain">
-        <div class="termLike displayField"></div>
-        <div class="termLike inputField">
-          <!-- <label for="input">First name: class="autoresizing" name="fname" /> -->
-          <p>
+        <div class="termLike displayField" id="displayField"></div>
+        <div class="termLike inputWrapper">
+          <p class="inputField">
             <strong>home@website:</strong>
-            <input oninput="increaseWidth(this)" class="textarea" role="textbox" autocapitalize="false" spellcheck="false" autofocus />
+            <input
+              oninput="increaseWidth(this)"
+              onkeypress="handleKeyPress(event, this)"
+              onsubmit="handleSubmit(this)"
+              class="textarea"
+              role="textbox"
+              autocapitalize="false"
+              spellcheck="false"
+              autofocus
+            />
           </p>
         </div>
       </div>
     </div>
     <script>
-      function increaseWidth(x) {
-        var numberOfCharacters = x.value.length
-        if (numberOfCharacters >= 10) {
-          var length = numberOfCharacters + 2 + 'ch'
-          x.style.width = length
-          console.log(length)
-        }
-      }
+      
     </script>
     <script src="script.js"></script>
   </body>

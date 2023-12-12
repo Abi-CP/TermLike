@@ -19,9 +19,9 @@ body {
   --bgc: #000;
   --fgc: #7afa50;
   --bdrc: #fff;
-  --cm: 20px;
-  --cp: 20px;
-  /* cursor: crosshair; */
+  --cnt-m: 20px;
+  --cnt-p: 20px;
+  --bdr-r: 0.25rem;
 }
 
 div.termLike.root {
@@ -42,8 +42,8 @@ div.termLike.containerMain {
   border: 0.05rem solid var(--bdrc);
   border-radius: 0.25rem;
   position: absolute;
-  padding: var(--cp);
-  margin: var(--cm);
+  padding: var(--cnt-p);
+  margin: var(--cnt-m);
   inset: 0px;
 }
 
@@ -51,7 +51,7 @@ input {
   height: auto;
   background-color: var(--bgc);
   color: var(--fgc);
-  font-family: 'Lucida Console', monaco, 'Courier New', Courier, monospace;
+  font-family: inherit;
   font-size: 0.8rem;
   border: none;
 }
@@ -60,42 +60,15 @@ input:focus {
   outline: none;
 }
 
-.inputWrapper {
-  width: fit-content;
-}
-
 .textarea {
   font-family: inherit;
   font-size: inherit;
-  /* padding-right: 10px; */
 }
 
 .textarea {
   display: inline;
-  /* min-inline-size: 100px; */
   min-width: 10ch;
-  /* overflow: */
-  /* min-height: 40px; */
-  /* line-height: 20px; */
   text-transform: none;
   word-wrap: break-word;
   resize: both;
-  padding-right: 2px;
-  
-}
-
-.textarea:focus-visible {
-  /* border-bottom: 1px solid #7afa50;
-  border-width: 1px 1rem; */
-  outline: none;
-  caret-shape: underscore;
-  user-select: none;
-}
-
-.textarea:focus {
-  caret-shape: underscore;
-}
-
-.textarea div{
-  display: inline;
 }

@@ -2,12 +2,53 @@ const D = document
 const W = window
 const para = D.createElement('p')
 const displayField = D.querySelector('.termLike.displayField')
-const inputField = D.querySelector('.termLike.inputField')
-const textarea = document.querySelector('.textarea')
+// const inputField = D.querySelector('.termLike.inputField')
+const textarea = D.querySelector('.textarea')
+
+function printPagePosition() {
+  let currentPage = 'home'
+  let websiteName = 'website'
+  let pagePosition = currentPage + '@' + websiteName + ':' + '\u00A0'
+
+  const newStrong = D.createElement('strong')
+  newStrong.textContent = pagePosition
+
+  const displayField = D.getElementById('displayField')
+  displayField.appendChild(newStrong)
+}
+
+function handleKeyPress(event, inputElement) {
+  if (event.key === 'Enter') {
+    handleSubmit(inputElement)
+  }
+}
+
+function handleSubmit(inputElement) {
+  const inputValue = inputElement.value
+  console.log(inputValue)
+
+  printInput(inputValue)
+
+  inputElement.value = ''
+}
+
+function printInput(inputValue) {
+  printPagePosition()
+
+  const newParagraph = D.createElement('p')
+  newParagraph.textContent = inputValue
+  newParagraph.style.display = 'inline-block'
+
+  const displayField = D.getElementById('displayField')
+  displayField.appendChild(newParagraph)
+
+  leaveBreak()
+  leaveBreak()
+}
 
 let message
-let cm = 20,
-  cp = 20
+let cntM = 20
+let cntP = 20
 
 function autoResize() {
   this.style.height = 'auto'
@@ -22,8 +63,13 @@ function leaveBreak() {
   displayField.appendChild(D.createElement('br'))
 }
 
-function focusInput() {
-  textarea.focus()
+function increaseWidth(inputElement) {
+  var numberOfCharacters = inputElement.value.length
+  if (numberOfCharacters >= 10) {
+    var length = numberOfCharacters + 2 + 'ch'
+    inputElement.style.width = length
+    console.log(length)
+  }
 }
 
 message = getDate()
@@ -32,42 +78,6 @@ para.appendChild(D.createTextNode(message))
 displayField.appendChild(para)
 leaveBreak()
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   // focusInput()
-
-//   inputField.addEventListener('click', () => {
-//     textarea.focus()
-//     console.log('click')
-//   })
-
-//   textarea.addEventListener('keydown', function (event) {
-//     if (event.key === 'Enter') {
-//       event.preventDefault()
-//       console.log('Input value:', textarea.textContent)
-//       // textarea.textContent = '\u200B' // Clear the input value
-//     }
-//   })
-
-//   textarea.addEventListener('input', function () {
-//     var availSpace = W.screen.availWidth - 2 * cm + 2 * cp
-
-//     textarea.textContent.trim()
-//     // Remove zero-width spaces without replacing
-//     // textarea.textContent.split('\u200B').join('')
-
-//     // if (textarea.textContent == '') {
-//     //   textarea.textContent = ' '
-//     // }
-
-//     console.log('Input value:', textarea.textContent)
-
-//     // focusInput()
-//   })
-// })
-
 console.log('JS Loaded')
-
-
-
 
 console.log('JS Loaded')
