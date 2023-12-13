@@ -1,54 +1,171 @@
 const D = document
-const W = window
-const para = D.createElement('p')
+// const W = window
 const displayField = D.querySelector('.termLike.displayField')
-// const inputField = D.querySelector('.termLike.inputField')
-const textarea = D.querySelector('.textarea')
+const textArea = D.querySelector('.textarea')
+
+let websiteName = 'website'
+let pagePosition = 'home@' + websiteName + ': '
+
+let cntM = 20,
+  cntP = 20
+
+let previousMessages = [],
+  nextMessages = []
+
+let currentMessage = '',
+  previousMessage = '',
+  nextMessage = ''
+
+printOutput(getDate())
+
+
+let commandHistory = [];
+
+function executeCommand(cmd, args) {
+  switch (cmd.toLowerCase()) {
+    case 'help':
+      printOutput('Available commands: help, clear, date, echo, whoami, history, exit/quit');
+      break;
+
+    case 'clear':
+      clearDisplay();
+      break;
+
+    case 'date':
+      printOutput(new Date().toLocaleString());
+      break;
+
+    case 'echo':
+      printOutput(args.join(' ')); // Concatenate arguments and print
+      break;
+
+    case 'whoami':
+      printOutput('Current user: [Your username]'); // Replace [Your username] with the actual username
+      break;
+
+    case 'history':
+      printOutput('Command history:\n' + commandHistory.join('\n'));
+      break;
+
+    case 'exit':
+    case 'quit':
+      printOutput('Exiting application...');
+      // You can perform additional cleanup or exit the application as needed.
+      break;
+
+    default:
+      printOutput(`Command not recognized: ${cmd}`);
+      break;
+  }
+
+  // Add the executed command to history
+  commandHistory.push(`${cmd} ${args.join(' ')}`);
+}
+function clearDisplay() {
+  displayField.innerHTML = ''
+}
+
+function handleMessages(inputValue) {
+  previousMessages.push(inputValue)
+}
+
+function handleArrowUp(inputElement) {
+  if (previousMessages.length > 0) {
+    nextMessages.push(inputElement.value)
+    textArea.value = previousMessages.pop()
+  }
+  console.log(previousMessages)
+  console.log(nextMessages)
+}
+
+function handleArrowDown(inputElement) {
+  if (nextMessages.length > 0) {
+    previousMessages.push(inputElement.value)
+    inputElement.value = nextMessages.pop()
+  }
+  console.log(previousMessages + '\n' + nextMessages)
+}
+
+function printOutput(output) {
+  const newParagraph = D.createElement('p')
+  newParagraph.appendChild(D.createTextNode(output))
+  displayField.appendChild(newParagraph)
+  leaveBreak()
+}
+
+function getPagePosition() {
+  let currentPage = 'home'
+  return currentPage
+}
+
+function setPagePosition() {
+  let currentPage = getPagePosition()
+  return (pagePosition = currentPage + '@' + websiteName + ':' + '\u00A0')
+}
 
 function printPagePosition() {
-  let currentPage = 'home'
-  let websiteName = 'website'
-  let pagePosition = currentPage + '@' + websiteName + ':' + '\u00A0'
-
   const newStrong = D.createElement('strong')
   newStrong.textContent = pagePosition
 
-  const displayField = D.getElementById('displayField')
   displayField.appendChild(newStrong)
 }
 
 function handleKeyPress(event, inputElement) {
   if (event.key === 'Enter') {
     handleSubmit(inputElement)
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault()
+    handleArrowUp(inputElement)
+  } else if (event.key === 'ArrowDown') {
+    event.preventDefault()
+    handleArrowDown(inputElement)
   }
+}
+
+function separateCmdAndArgs(inputValue) {
+  currentMessage = inputValue
+  console.log(currentMessage)
+  let words = currentMessage.split(' ')
+  let cmd = words[0],
+    args = words.slice(1)
+
+  return { cmd, args }
+}
+
+function handleCommand(inputValue) {
+  let { cmd, args } = separateCmdAndArgs(inputValue)
+  console.log('cmd' + cmd)
+  console.log(args)
+  executeCommand(cmd, args)
 }
 
 function handleSubmit(inputElement) {
   const inputValue = inputElement.value
+  handleMessages(inputValue)
   console.log(inputValue)
 
   printInput(inputValue)
 
+  handleCommand(inputValue)
+
   inputElement.value = ''
+  inputElement.style.width = '20ch'
 }
 
 function printInput(inputValue) {
   printPagePosition()
 
   const newParagraph = D.createElement('p')
+  // newParagraph.style.display = 'inl'
   newParagraph.textContent = inputValue
-  newParagraph.style.display = 'inline-block'
+  newParagraph.style.display = 'inline'
+  newParagraph.style.overflowWrap = 'break-word'
+  // newParagraph.style.maxWidth = '100vw'
 
-  const displayField = D.getElementById('displayField')
   displayField.appendChild(newParagraph)
 
   leaveBreak()
-  leaveBreak()
 }
-
-let message
-let cntM = 20
-let cntP = 20
 
 function autoResize() {
   this.style.height = 'auto'
@@ -65,19 +182,11 @@ function leaveBreak() {
 
 function increaseWidth(inputElement) {
   var numberOfCharacters = inputElement.value.length
-  if (numberOfCharacters >= 10) {
+  if (numberOfCharacters >= 20) {
     var length = numberOfCharacters + 2 + 'ch'
     inputElement.style.width = length
     console.log(length)
   }
 }
-
-message = getDate()
-console.log(message)
-para.appendChild(D.createTextNode(message))
-displayField.appendChild(para)
-leaveBreak()
-
-console.log('JS Loaded')
 
 console.log('JS Loaded')

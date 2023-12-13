@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div class="termLike root">
+    <div class="termLike termLikeRoot">
       <div class="termLike containerMain">
-        <div class="termLike displayField" id="displayField"></div>
+        <div class="termLike displayField"></div>
         <div class="termLike inputWrapper">
           <p class="inputField">
-            <strong>home@website:</strong>
+            <strong>page@website:</strong>
             <input
               oninput="increaseWidth(this)"
-              onkeypress="handleKeyPress(event, this)"
+              onkeydown="handleKeyPress(event, this)"
               onsubmit="handleSubmit(this)"
               class="textarea"
               role="textbox"
@@ -27,9 +27,7 @@
         </div>
       </div>
     </div>
-    <script>
-      
-    </script>
+    <script></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -24,7 +24,7 @@ body {
   --bdr-r: 0.25rem;
 }
 
-div.termLike.root {
+div.termLike.termLikeRoot {
   overflow: hidden;
   background-color: var(--bgc);
   width: 100vw;
@@ -47,25 +47,24 @@ div.termLike.containerMain {
   inset: 0px;
 }
 
-input {
+.termLike input {
+  width: 20ch;
   height: auto;
   background-color: var(--bgc);
   color: var(--fgc);
+  /* color: #fff; */
   font-family: inherit;
   font-size: 0.8rem;
   border: none;
 }
 
-input:focus {
+.termLike input:focus {
   outline: none;
 }
 
-.textarea {
+.termLike .textarea {
   font-family: inherit;
   font-size: inherit;
-}
-
-.textarea {
   display: inline;
   min-width: 10ch;
   text-transform: none;
